@@ -3,13 +3,13 @@ import Image from "next/image";
 export default function Hero() {
   return (
     <div className="bg-[#0A0A0A] min-h-screen w-full overflow-hidden">
-      <div className="container mx-auto px-4 py-12 relative">
+      <div className="container mx-auto px-4 py-9 relative">
         {/* Grid Layout for Hero Section */}
         <div className="grid md:grid-cols-2 items-center gap-8 md:px-16">
           {/* Left Content */}
           <div className="max-w-4xl ml-auto">
             {/* Safe Money Badge */}
-            <div className="inline-flex items-center bg-[#1A1A1A] rounded-full px-4 py-2 text-sm mb-8">
+            <div className="inline-flex items-center bg-[#1A1A1A] rounded-full px-4 py-2 text-sm pb-8">
               <span className="text-white">KEEP YOUR MONEY SAFE</span>
               <span className="ml-2">⚡</span>
             </div>
