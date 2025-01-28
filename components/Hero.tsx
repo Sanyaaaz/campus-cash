@@ -3,37 +3,40 @@ import AnimatedLoginModal from "./ui/Login";
 
 export default function Hero() {
   return (
-    <div className="bg-[#0A0A0A] max-h-screen w-full overflow-hidden">
-      <header className="top-0 left-0 w-full bg-[#0D0B14] shadow-md z-50 container mx-auto flex items-center justify-between px-14 pt-4">
-        {/* Logo */}
-        <div className="flex items-center space-x-2">
-          <div className="w-8 h-8 rounded-full" />
-          <span className="text-xl font-bold text-white">Connect Cash</span>
+    <div className="bg-[#0A0A0A] h-screen w-full overflow-hidden flex flex-col">
+      {/* Navbar */}
+      <header className="fixed top-0 left-0 w-full bg-[#0D0B14] shadow-md z-50">
+        <div className="container mx-auto flex items-center justify-between px-16 py-4">
+          {/* Logo */}
+          <div className="flex items-center space-x-2">
+            <div className="w-8 h-8 rounded-full bg-white" />
+            <span className="text-xl font-bold text-white">Connect Cash</span>
+          </div>
+          {/* Login Button */}
+          <AnimatedLoginModal />
         </div>
-        {/* Login Button */}
-        <AnimatedLoginModal />
       </header>
 
-      <div className="container mx-auto py-9 relative px-10">
-        {/* Grid Layout for Hero Section */}
-        <div className="grid md:grid-cols-2 items-center gap-8">
+      {/* Hero Content */}
+      <div className="flex-1 container mx-auto flex items-center px-16 mt-20">
+        <div className="grid md:grid-cols-2 items-center gap-6 w-full">
           {/* Left Content */}
-          <div className="max-w-4xl ml-auto">
-            {/* Safe Money Badge */}
-            <div className="inline-flex items-center rounded-full px-4 py-2 text-sm pb-8">
+          <div className="max-w-4xl">
+            {/* Badge */}
+            <div className="inline-flex items-center rounded-full px-4 py-2 text-sm mb-8">
               <span className="text-white">KEEP YOUR MONEY SAFE</span>
               <span className="ml-2">⚡</span>
             </div>
 
             {/* Main Heading */}
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-white leading-tight mb-8 text-left">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-white leading-tight mb-6">
               Best <span className="text-[#C1FF00]">crypto</span> <br />
               investing <span className="text-[#C1FF00]">platform</span> <br />
               <span className="text-gray-400">for your future.</span>
             </h1>
 
             {/* Description */}
-            <div className="flex items-start space-x-4 text-gray-400 max-w-lg mb-20">
+            <div className="flex items-start space-x-4 text-gray-400 max-w-lg mb-10">
               <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
                 <svg
                   className="w-6 h-6 text-[#C1FF00]"
@@ -57,7 +60,7 @@ export default function Hero() {
             </div>
 
             {/* Bottom Section */}
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <h2 className="text-4xl sm:text-5xl font-bold text-white">
                   Your <span className="text-[#C1FF00]">trusted</span> partner of <br />
@@ -75,19 +78,17 @@ export default function Hero() {
           </div>
 
           {/* Right Content (Image) */}
-          <div className="flex justify-end mt-8 md:mt-0">
-            <div className="relative w-full max-w-none md:max-w-xs lg:max-w-sm">
+          <div className="flex justify-center">
+            <div className="relative w-[400px] h-[600px] md:w-[400px] md:h-[650px] ml-8">
               <Image
                 src="/mobile.png" // Path to your image in the public folder
                 alt="Hero Section Image"
-                layout="responsive" // Ensures the image scales with container width
-                width={300} // Adjust the width to fit the layout
-                height={450} // Adjust the height to fit within the hero section
-                className="object-cover w-full h-full" // Ensure image covers the container space
+                layout="fill"
+                objectFit="contain" // Ensures the image stays proportional
+                className="rounded-md"
               />
             </div>
           </div>
-
         </div>
       </div>
     </div>
