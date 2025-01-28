@@ -1,7 +1,7 @@
 "use client"
 import type React from "react"
 import { useState } from "react"
-import { Modal, ModalBody, ModalContent, ModalFooter, ModalTrigger } from "@/components/ui/animated-modal"
+import { Modal, ModalBody, ModalContent, ModalFooter, ModalTrigger } from "./animated-modal"
 import { motion } from "framer-motion"
 
 export default function AnimatedAuthModal() {
@@ -35,9 +35,9 @@ export default function AnimatedAuthModal() {
   }
 
   return (
-    <div className="py-40 flex items-center justify-center">
+    <div className="py-4 flex items-center justify-center">
       <Modal>
-        <ModalTrigger className="bg-black dark:bg-white dark:text-black text-white flex justify-center group/modal-btn">
+        <ModalTrigger className="bg-white text-black flex justify-center group/modal-btn">
           <span className="group-hover/modal-btn:translate-x-40 text-center transition duration-500">
             {isLogin ? "Login" : "Sign Up"}
           </span>
@@ -47,13 +47,13 @@ export default function AnimatedAuthModal() {
         </ModalTrigger>
         <ModalBody>
           <ModalContent>
-            <h4 className="text-lg md:text-2xl text-neutral-600 dark:text-neutral-100 font-bold text-center mb-8">
+            <h4 className="text-lg md:text-2xl text-neutral-100 font-bold text-center mb-8">
               {isLogin ? "Welcome Back! 👋" : "Create an Account 🚀"}
             </h4>
             <form onSubmit={handleSubmit} className="space-y-4">
               {!isLogin && (
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-200">
                     Name
                   </label>
                   <input
@@ -62,12 +62,12 @@ export default function AnimatedAuthModal() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required={!isLogin}
-                    className="mt-1 block w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                    className="mt-1 block w-full px-3 py-2 bg-neutral-800 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                   />
                 </div>
               )}
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-200">
                   Email
                 </label>
                 <input
@@ -76,11 +76,11 @@ export default function AnimatedAuthModal() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="mt-1 block w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                  className="mt-1 block w-full px-3 py-2 bg-neutral-800 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                 />
               </div>
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
+                <label htmlFor="password" className="block text-sm font-medium text-gray-200">
                   Password
                 </label>
                 <input
@@ -89,7 +89,7 @@ export default function AnimatedAuthModal() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="mt-1 block w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                  className="mt-1 block w-full px-3 py-2 bg-neutral-800 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                 />
               </div>
               <motion.button
@@ -102,15 +102,15 @@ export default function AnimatedAuthModal() {
               </motion.button>
             </form>
             <div className="mt-4 flex items-center justify-between">
-              <hr className="w-full border-t border-gray-300 dark:border-gray-600" />
-              <span className="px-2 text-gray-500 dark:text-gray-400">Or</span>
-              <hr className="w-full border-t border-gray-300 dark:border-gray-600" />
+              <hr className="w-full border-t border-gray-600" />
+              <span className="px-2 text-gray-400">Or</span>
+              <hr className="w-full border-t border-gray-600" />
             </div>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={handleGoogleAuth}
-              className="mt-4 w-full flex items-center justify-center px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-neutral-800 hover:bg-gray-50 dark:hover:bg-neutral-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="mt-4 w-full flex items-center justify-center px-4 py-2 border border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-200 bg-neutral-800 hover:bg-neutral-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               <svg className="h-5 w-5 mr-2" viewBox="0 0 24 24">
                 <path
@@ -142,7 +142,7 @@ export default function AnimatedAuthModal() {
             )}
           </ModalContent>
           <ModalFooter className="justify-center">
-            <p className="text-sm text-gray-500 dark:text-gray-400">
+            <p className="text-sm text-gray-400">
               {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
               <button onClick={toggleAuthMode} className="font-medium text-indigo-600 hover:text-indigo-500">
                 {isLogin ? "Sign up" : "Log in"}
