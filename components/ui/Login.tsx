@@ -1,32 +1,46 @@
 "use client"
 import type React from "react"
 import { useState } from "react"
-import { Modal, ModalBody, ModalContent, ModalFooter, ModalTrigger } from "./animated-modal"
+import { Modal, ModalBody, ModalContent, ModalFooter, ModalTrigger } from "@/components/ui/animated-modal"
 import { motion } from "framer-motion"
 
-export default function AnimatedLoginModal() {
+export default function AnimatedAuthModal() {
+  const [isLogin, setIsLogin] = useState(true)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [name, setName] = useState("")
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you would typically handle the login logic
-    console.log("Login attempted with:", { email, password })
+    if (isLogin) {
+      console.log("Login attempted with:", { email, password })
+    } else {
+      console.log("Sign up attempted with:", { name, email, password })
+    }
     // Reset fields after submission
     setEmail("")
     setPassword("")
+    setName("")
   }
 
-  const handleGoogleSignIn = () => {
-    // Placeholder for Google Sign-In logic
-    console.log("Google Sign-In attempted")
+  const handleGoogleAuth = () => {
+    console.log(isLogin ? "Google Sign-In attempted" : "Google Sign-Up attempted")
+  }
+
+  const toggleAuthMode = () => {
+    setIsLogin(!isLogin)
+    setEmail("")
+    setPassword("")
+    setName("")
   }
 
   return (
     <div className="py-40 flex items-center justify-center">
       <Modal>
         <ModalTrigger className="bg-black dark:bg-white dark:text-black text-white flex justify-center group/modal-btn">
-          <span className="group-hover/modal-btn:translate-x-40 text-center transition duration-500">Login</span>
+          <span className="group-hover/modal-btn:translate-x-40 text-center transition duration-500">
+            {isLogin ? "Login" : "Sign Up"}
+          </span>
           <div className="-translate-x-40 group-hover/modal-btn:translate-x-0 flex items-center justify-center absolute inset-0 transition duration-500 text-white z-20">
             🔐
           </div>
@@ -34,9 +48,24 @@ export default function AnimatedLoginModal() {
         <ModalBody>
           <ModalContent>
             <h4 className="text-lg md:text-2xl text-neutral-600 dark:text-neutral-100 font-bold text-center mb-8">
-              Welcome Back! 👋
+              {isLogin ? "Welcome Back! 👋" : "Create an Account 🚀"}
             </h4>
-            <form onSubmit={handleLogin} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {!isLogin && (
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required={!isLogin}
+                    className="mt-1 block w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                  />
+                </div>
+              )}
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                   Email
@@ -69,7 +98,7 @@ export default function AnimatedLoginModal() {
                 type="submit"
                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
-                Sign in
+                {isLogin ? "Sign in" : "Sign up"}
               </motion.button>
             </form>
             <div className="mt-4 flex items-center justify-between">
@@ -80,7 +109,7 @@ export default function AnimatedLoginModal() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={handleGoogleSignIn}
+              onClick={handleGoogleAuth}
               className="mt-4 w-full flex items-center justify-center px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-neutral-800 hover:bg-gray-50 dark:hover:bg-neutral-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               <svg className="h-5 w-5 mr-2" viewBox="0 0 24 24">
@@ -102,20 +131,22 @@ export default function AnimatedLoginModal() {
                 />
                 <path fill="none" d="M1 1h22v22H1z" />
               </svg>
-              Sign in with Google
+              {isLogin ? "Sign in with Google" : "Sign up with Google"}
             </motion.button>
-            <div className="mt-4 text-center text-sm">
-              <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                Forgot your password?
-              </a>
-            </div>
+            {isLogin && (
+              <div className="mt-4 text-center text-sm">
+                <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                  Forgot your password?
+                </a>
+              </div>
+            )}
           </ModalContent>
           <ModalFooter className="justify-center">
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Don't have an account?{" "}
-              <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                Sign up
-              </a>
+              {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
+              <button onClick={toggleAuthMode} className="font-medium text-indigo-600 hover:text-indigo-500">
+                {isLogin ? "Sign up" : "Log in"}
+              </button>
             </p>
           </ModalFooter>
         </ModalBody>
