@@ -7,8 +7,7 @@ export function NavbarDemo() {
   return (
     <div className="relative w-full h-screen flex items-center justify-center bg-black-500">
   <Navbar className="absolute top-2" />
-  <p className="text-black dark:text-white">
-    Hello</p>
+  
 </div>
   );
 }
