@@ -1,21 +1,32 @@
 import Image from "next/image";
+import AnimatedLoginModal from "./ui/Login";
 
 export default function Hero() {
   return (
-    <div className="bg-[#0A0A0A] min-h-screen w-full overflow-hidden">
-      <div className="container mx-auto px-4 py-12 relative">
+    <div className="bg-[#0A0A0A] max-h-screen w-full overflow-hidden">
+      <header className="top-0 left-0 w-full bg-[#0D0B14] shadow-md z-50 container mx-auto flex items-center justify-between px-14 pt-4">
+        {/* Logo */}
+        <div className="flex items-center space-x-2">
+          <div className="w-8 h-8 rounded-full" />
+          <span className="text-xl font-bold text-white">Connect Cash</span>
+        </div>
+        {/* Login Button */}
+        <AnimatedLoginModal />
+      </header>
+
+      <div className="container mx-auto py-9 relative px-10">
         {/* Grid Layout for Hero Section */}
-        <div className="grid md:grid-cols-2 items-center gap-8 md:px-16">
+        <div className="grid md:grid-cols-2 items-center gap-8">
           {/* Left Content */}
           <div className="max-w-4xl ml-auto">
             {/* Safe Money Badge */}
-            <div className="inline-flex items-center bg-[#1A1A1A] rounded-full px-4 py-2 text-sm mb-8">
+            <div className="inline-flex items-center rounded-full px-4 py-2 text-sm pb-8">
               <span className="text-white">KEEP YOUR MONEY SAFE</span>
               <span className="ml-2">⚡</span>
             </div>
 
             {/* Main Heading */}
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-white leading-tight mb-8 text-left -ml-4">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-white leading-tight mb-8 text-left">
               Best <span className="text-[#C1FF00]">crypto</span> <br />
               investing <span className="text-[#C1FF00]">platform</span> <br />
               <span className="text-gray-400">for your future.</span>
@@ -23,7 +34,7 @@ export default function Hero() {
 
             {/* Description */}
             <div className="flex items-start space-x-4 text-gray-400 max-w-lg mb-20">
-              <div className="w-12 h-12 rounded-full bg-[#1A1A1A] flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
                 <svg
                   className="w-6 h-6 text-[#C1FF00]"
                   fill="none"
@@ -64,15 +75,19 @@ export default function Hero() {
           </div>
 
           {/* Right Content (Image) */}
-          <div className="flex justify-center md:justify-start mt-8 md:mt-0">
-            <Image
-              src="/mobile.png" // Path to your image in the public folder
-              alt="Hero Section Image"
-              width={400} // Adjust the width to fit the layout
-              height={600} // Adjust the height to fit within the hero section
-              className="object-cover md:max-h-[500px] w-auto" // Ensure image resizes properly
-            />
+          <div className="flex justify-end mt-8 md:mt-0">
+            <div className="relative w-full max-w-none md:max-w-xs lg:max-w-sm">
+              <Image
+                src="/mobile.png" // Path to your image in the public folder
+                alt="Hero Section Image"
+                layout="responsive" // Ensures the image scales with container width
+                width={300} // Adjust the width to fit the layout
+                height={450} // Adjust the height to fit within the hero section
+                className="object-cover w-full h-full" // Ensure image covers the container space
+              />
+            </div>
           </div>
+
         </div>
       </div>
     </div>
