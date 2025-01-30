@@ -3,6 +3,7 @@ import type React from "react"
 import { useState } from "react"
 import { Modal, ModalBody, ModalContent, ModalFooter, ModalTrigger } from "./animated-modal"
 import { motion } from "framer-motion"
+import Link from "next/link";
 
 export default function AnimatedAuthModal() {
   const [isLogin, setIsLogin] = useState(true)
@@ -37,7 +38,7 @@ export default function AnimatedAuthModal() {
   return (
     <div className="py-4 flex items-center justify-center">
       <Modal>
-        <ModalTrigger className="bg-white text-black flex justify-center group/modal-btn">
+        <ModalTrigger className="bg-black text-white flex justify-center group/modal-btn">
           <span className="group-hover/modal-btn:translate-x-40 text-center transition duration-500">
             {isLogin ? "Login" : "Sign Up"}
           </span>
@@ -45,8 +46,8 @@ export default function AnimatedAuthModal() {
             🔐
           </div>
         </ModalTrigger>
-        <ModalBody>
-          <ModalContent>
+        <ModalBody className="bg-black">
+          <ModalContent className="bg-black ">
             <h4 className="text-lg md:text-2xl text-neutral-100 font-bold text-center mb-8">
               {isLogin ? "Welcome Back! 👋" : "Create an Account 🚀"}
             </h4>
@@ -62,7 +63,7 @@ export default function AnimatedAuthModal() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required={!isLogin}
-                    className="mt-1 block w-full px-3 py-2 bg-neutral-800 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                    className="mt-1 block w-full px-3 py-2 bg-neutral-800 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-[#c1ff72] focus:border-[#c1ff72] text-white"
                   />
                 </div>
               )}
@@ -76,7 +77,7 @@ export default function AnimatedAuthModal() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="mt-1 block w-full px-3 py-2 bg-neutral-800 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                  className="mt-1 block w-full px-3 py-2 text-white bg-neutral-800 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-[#c1ff72] focus:border-[#c1ff72] "
                 />
               </div>
               <div>
@@ -89,17 +90,20 @@ export default function AnimatedAuthModal() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="mt-1 block w-full px-3 py-2 bg-neutral-800 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                  className="mt-1 block w-full px-3 py-2 text-white bg-neutral-800 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-[#c1ff72] focus:border-[#c1ff72]"
                 />
               </div>
+              
+              <Link href={"/dashboard"}>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 type="submit"
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-black bg-[#c1ff72] hover:bg-[#c1ff72] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
               >
                 {isLogin ? "Sign in" : "Sign up"}
               </motion.button>
+              </Link>
             </form>
             <div className="mt-4 flex items-center justify-between">
               <hr className="w-full border-t border-gray-600" />
@@ -110,7 +114,7 @@ export default function AnimatedAuthModal() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={handleGoogleAuth}
-              className="mt-4 w-full flex items-center justify-center px-4 py-2 border border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-200 bg-neutral-800 hover:bg-neutral-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="mt-4 w-full flex items-center justify-center px-4 py-2 border text-white border-gray-600 rounded-md shadow-sm text-sm font-medium  dark:text-gray-200 bg-neutral-800 hover:bg-neutral-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#c1ff72]"
             >
               <svg className="h-5 w-5 mr-2" viewBox="0 0 24 24">
                 <path
@@ -135,16 +139,16 @@ export default function AnimatedAuthModal() {
             </motion.button>
             {isLogin && (
               <div className="mt-4 text-center text-sm">
-                <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                <a href="#" className="font-medium text-[#c1ff72] hover:text-[#c1ff72]">
                   Forgot your password?
                 </a>
               </div>
             )}
           </ModalContent>
-          <ModalFooter className="justify-center">
+          <ModalFooter className="justify-center bg-black">
             <p className="text-sm text-gray-400">
               {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
-              <button onClick={toggleAuthMode} className="font-medium text-indigo-600 hover:text-indigo-500">
+              <button onClick={toggleAuthMode} className="font-medium text-[#c1ff72] hover:text-[#c1ff72]">
                 {isLogin ? "Sign up" : "Log in"}
               </button>
             </p>
@@ -154,4 +158,3 @@ export default function AnimatedAuthModal() {
     </div>
   )
 }
-
